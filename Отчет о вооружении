@@ -1,0 +1,61 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Headquarters headquarters = new Headquarters();
+        headquarters.GetSoldiersNameAndRank();
+        Console.ReadKey();
+    }
+}
+
+public class Soldier
+{
+    public Soldier(string name, string weapons, string rank, int serviceLife)
+    {
+        Name = name;
+        Weapons = weapons;
+        Rank = rank;
+        ServiceLife = serviceLife;
+    }
+
+    public string Name { get; private set; }
+    public string Weapons { get; private set; }
+    public string Rank { get; private set; }
+    public int ServiceLife { get; private set; }
+
+    public void ShowInfo()
+    {
+        Console.WriteLine($"Солдат: {Name}. Вооружение - {Weapons}, звание - {Rank}, срок службы - {ServiceLife} месяца(ев). ");
+    }
+}
+
+public class Headquarters
+{
+    private List<Soldier> _soldiers;
+
+    public Headquarters()
+    {
+        _soldiers = new List<Soldier>
+        {
+            new Soldier("Иван", "АК-47", "рядовой", 5),
+            new Soldier("Игорь", "АК-47", "рядовой", 8),
+            new Soldier("Сергей", "М1911", "старший сержант", 24),
+            new Soldier("Антон", "М4", "младший сержант", 12),
+            new Soldier("Петр", "АК-74", "сержант", 18),
+        };
+    }
+
+    public void GetSoldiersNameAndRank()
+    {
+        var newSoldiers = _soldiers.Select(soldier => new {name = soldier.Name, rank = soldier.Rank}).ToList();
+
+        foreach (var soldier in newSoldiers)
+        {
+            Console.WriteLine($"Имя солдата - {soldier.name}, звание - {soldier.rank}.");
+        }
+    }
+}
