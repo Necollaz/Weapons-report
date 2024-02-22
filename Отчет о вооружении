@@ -51,11 +51,11 @@ public class Headquarters
 
     public void GetSoldiersNameAndRank()
     {
-        var newSoldiers = _soldiers.Select(soldier => new {name = soldier.Name, rank = soldier.Rank}).ToList();
+        var newSoldiers = _soldiers.Select(soldier => new {Name = soldier.Name, Rank = soldier.Rank}).ToList();
 
         foreach (var soldier in newSoldiers)
         {
-            Console.WriteLine($"Имя солдата - {soldier.name}, звание - {soldier.rank}.");
+            Console.WriteLine($"Имя солдата - {soldier.Name}, звание - {soldier.Rank}.");
         }
     }
 }
